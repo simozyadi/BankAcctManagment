@@ -1,5 +1,9 @@
 package simo.devsid.entities;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import java.io.Serializable;
 import java.util.Collection;
 
@@ -55,14 +59,17 @@ public class Employee implements Serializable{
 		this.employeeName = employeeName;
 	}
 
+	@JsonIgnore
 	public Employee getEmployeeSup() {
 		return employeeSup;
 	}
 
+	@JsonSetter
 	public void setEmployeeSup(Employee employeeSup) {
 		this.employeeSup = employeeSup;
 	}
 
+	@JsonIgnore
 	public Collection<Group> getGroups() {
 		return groups;
 	}

@@ -1,5 +1,7 @@
 package simo.devsid.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.Collection;
 
@@ -38,6 +40,7 @@ public class Client implements Serializable{
 	public void setClientName(String clientName) {
 		this.clientName = clientName;
 	}
+	@JsonIgnore
 	public Collection<Acount> getAccounts() {
 		return accounts;
 	}

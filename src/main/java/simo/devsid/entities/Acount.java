@@ -1,5 +1,8 @@
 package simo.devsid.entities;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -19,6 +22,12 @@ import javax.persistence.OneToMany;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "ACT_TYPE",discriminatorType = DiscriminatorType.STRING,length = 2)
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME,include = JsonTypeInfo.As.PROPERTY,property = "type")
+@JsonSubTypes({
+		@JsonSubTypes.Type(value = CurrentAcount.class,name = "CA"),
+		@JsonSubTypes.Type(value = SavingAcount.class,name = "SA")
+})
 public abstract class Acount implements Serializable {
 	@Id
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
