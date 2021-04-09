@@ -16,7 +16,7 @@ public class OperationRestService {
                            @RequestParam Long employeeCode) {
         return businessOperation.deposit(accountCode, amount, employeeCode);
     }
-    @RequestMapping(value = "/withraw",method = RequestMethod.POST)
+    @RequestMapping(value = "/withraw",method = RequestMethod.PUT)
     public Boolean withraw(@RequestParam String accountCode,
                            @RequestParam double amount,
                            @RequestParam Long employeeCode) {

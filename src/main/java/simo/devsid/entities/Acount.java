@@ -1,5 +1,6 @@
 package simo.devsid.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
@@ -40,6 +41,7 @@ public abstract class Acount implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "EMPLOYEE_CODE")
 	private Employee employee;
+	@JsonIgnore
 	@OneToMany(mappedBy = "acount")
 	private Collection<Operation> operations;
 	public Acount() {
