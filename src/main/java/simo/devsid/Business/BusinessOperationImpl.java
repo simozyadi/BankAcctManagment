@@ -1,8 +1,12 @@
 package simo.devsid.Business;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import simo.devsid.Utility.PageOperation;
 import simo.devsid.entities.*;
 import simo.devsid.repository.AcountRepository;
 import simo.devsid.repository.EmployeeRepository;
@@ -59,5 +63,21 @@ public class BusinessOperationImpl implements BusinessOperation{
         withraw(accountCodeSrc,amount,employeeCode);
         deposit(accountCodeDst,amount,employeeCode);
         return true;
+    }
+
+    @Override
+    public PageOperation getOperations(String accountCode, int page, int size) {
+        Page<Operation> opr = oprRep.getOperations(
+                                            accountCode,
+                                            PageRequest.of(page,size)
+                                            );
+
+        PageOperation pageOperation = new PageOperation();
+        pageOperation.setOperations(opr.getContent());
+        pageOperation.setOperationsNumberperPage(opr.getNumberOfElements());
+        pageOperation.setPage(opr.getNumber());//page
+        pageOperation.setTotalPages(opr.getTotalPages());
+        pageOperation.setTotalOperations((int) opr.getTotalElements());
+    return pageOperation;
     }
 }

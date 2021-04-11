@@ -1,5 +1,11 @@
 package simo.devsid.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+import static com.fasterxml.jackson.annotation.JsonTypeInfo.*;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,6 +22,12 @@ import javax.persistence.ManyToOne;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(length = 1)
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME,include = As.PROPERTY,property = "type")
+@JsonSubTypes({
+		@JsonSubTypes.Type(value = Deposit.class,name = "D"),
+		@JsonSubTypes.Type(value = Withdrawal.class,name = "W")
+})
 public abstract class Operation implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,6 +78,7 @@ public abstract class Operation implements Serializable{
 		this.amount = amount;
 	}
 
+	@JsonIgnore
 	public Acount getAcount() {
 		return acount;
 	}
@@ -74,6 +87,7 @@ public abstract class Operation implements Serializable{
 		this.acount = acount;
 	}
 
+	@JsonIgnore
 	public Employee getEmployee() {
 		return employee;
 	}
