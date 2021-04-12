@@ -18,6 +18,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -79,6 +80,7 @@ public abstract class Operation implements Serializable{
 	}
 
 	@JsonIgnore
+	@XmlTransient
 	public Acount getAcount() {
 		return acount;
 	}
@@ -88,6 +90,7 @@ public abstract class Operation implements Serializable{
 	}
 
 	@JsonIgnore
+	@XmlTransient
 	public Employee getEmployee() {
 		return employee;
 	}

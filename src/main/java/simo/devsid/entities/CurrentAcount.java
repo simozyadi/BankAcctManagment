@@ -5,9 +5,11 @@ import java.util.Date;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.xml.bind.annotation.XmlType;
 
 @Entity
 @DiscriminatorValue("CA")
+@XmlType(name = "CA")
 public class CurrentAcount extends Acount implements Serializable {
 	private double overdraft;
 

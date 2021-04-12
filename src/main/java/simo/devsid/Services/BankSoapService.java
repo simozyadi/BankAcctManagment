@@ -2,6 +2,8 @@ package simo.devsid.Services;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import simo.devsid.Business.BusinessAccount;
 import simo.devsid.Business.BusinessOperation;
 import simo.devsid.Utility.PageOperation;
@@ -12,6 +14,7 @@ import javax.jws.WebParam;
 import javax.jws.WebService;
 
 @WebService
+@Component
 public class BankSoapService {
 
     @Autowired
@@ -20,6 +23,8 @@ public class BankSoapService {
     BusinessOperation businessOperation;
     @WebMethod
     public Acount getAcount(@WebParam(name = "accountCode") String accountCode) {
+        System.out.println(accountCode);
+        System.out.println(businessAccount.getAcount(accountCode));
         return businessAccount.getAcount(accountCode);
     }
 

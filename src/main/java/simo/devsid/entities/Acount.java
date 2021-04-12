@@ -17,7 +17,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlTransient;
 
 
 @Entity
@@ -29,6 +30,8 @@ import javax.persistence.OneToMany;
 		@JsonSubTypes.Type(value = CurrentAcount.class,name = "CA"),
 		@JsonSubTypes.Type(value = SavingAcount.class,name = "SA")
 })
+
+@XmlSeeAlso({CurrentAcount.class,SavingAcount.class})
 public abstract class Acount implements Serializable {
 	@Id
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,7 +44,6 @@ public abstract class Acount implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "EMPLOYEE_CODE")
 	private Employee employee;
-	@JsonIgnore
 	@OneToMany(mappedBy = "acount")
 	private Collection<Operation> operations;
 	public Acount() {
@@ -84,6 +86,8 @@ public abstract class Acount implements Serializable {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
+	@JsonIgnore
+	@XmlTransient
 	public Collection<Operation> getOperations() {
 		return operations;
 	}

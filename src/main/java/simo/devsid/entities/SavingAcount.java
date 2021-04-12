@@ -4,9 +4,12 @@ import java.util.Date;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.xml.bind.annotation.XmlType;
 
 @Entity
 @DiscriminatorValue("SA")
+
+@XmlType(name = "SA")
 public class SavingAcount extends Acount{
 	private double rate;
 

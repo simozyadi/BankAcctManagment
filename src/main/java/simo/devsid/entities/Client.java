@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 public class Client implements Serializable{
@@ -41,6 +42,7 @@ public class Client implements Serializable{
 		this.clientName = clientName;
 	}
 	@JsonIgnore
+	@XmlTransient
 	public Collection<Acount> getAccounts() {
 		return accounts;
 	}

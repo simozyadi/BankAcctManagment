@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 public class Employee implements Serializable{
@@ -60,6 +61,7 @@ public class Employee implements Serializable{
 	}
 
 	@JsonIgnore
+	@XmlTransient
 	public Employee getEmployeeSup() {
 		return employeeSup;
 	}
@@ -70,6 +72,7 @@ public class Employee implements Serializable{
 	}
 
 	@JsonIgnore
+	@XmlTransient
 	public Collection<Group> getGroups() {
 		return groups;
 	}
